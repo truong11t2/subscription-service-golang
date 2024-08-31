@@ -2,6 +2,7 @@ package main
 
 import (
 	"database/sql"
+	"github/truong11t2/subscription-service-golang/data"
 	"log"
 	"sync"
 
@@ -14,4 +15,5 @@ type Config struct {
 	InfoLog  *log.Logger
 	ErrorLog *log.Logger
 	Wait     *sync.WaitGroup
+	Models   data.Models
 }
