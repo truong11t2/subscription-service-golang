@@ -6,8 +6,12 @@
             <div class="col-md-8 offset-md-2">
                 <h1 class="mt-5">Home</h1>
                 <hr>
-                <a class="btn btn-outline-secondary" href="/login">Login</a>
-                <a class="btn btn-outline-secondary" href="/register">Register</a>
+                {{if eq .Authenticated false}}
+                    <a class="btn btn-outline-secondary" href="/login">Login</a>
+                    <a class="btn btn-outline-secondary" href="/register">Register</a>
+                {{else}}
+                    <a class="btn btn-outline-secondary" href="/logout">Logout</a>
+                {{end}}
             </div>
 
         </div>

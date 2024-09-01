@@ -2,6 +2,8 @@ module github/truong11t2/subscription-service-golang
 
 go 1.21.12
 
+require github.com/bwmarrin/go-alone v0.0.0-20190806015146-742bb55d1631
+
 require (
 	github.com/PuerkitoBio/goquery v1.9.1 // indirect
 	github.com/alexedwards/scs/redisstore v0.0.0-20240316134038-7e11d57e8885 // indirect
@@ -24,5 +26,6 @@ require (
 	github.com/xhit/go-simple-mail/v2 v2.16.0 // indirect
 	golang.org/x/crypto v0.21.0 // indirect
 	golang.org/x/net v0.23.0 // indirect
+	golang.org/x/sys v0.18.0 // indirect
 	golang.org/x/text v0.14.0 // indirect
 )
