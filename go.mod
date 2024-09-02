@@ -5,6 +5,11 @@ go 1.21.12
 require github.com/bwmarrin/go-alone v0.0.0-20190806015146-742bb55d1631
 
 require (
+	github.com/phpdave11/gofpdi v1.0.12 // indirect
+	github.com/pkg/errors v0.9.1 // indirect
+)
+
+require (
 	github.com/PuerkitoBio/goquery v1.9.1 // indirect
 	github.com/alexedwards/scs/redisstore v0.0.0-20240316134038-7e11d57e8885 // indirect
 	github.com/alexedwards/scs/v2 v2.8.0 // indirect
@@ -20,6 +25,7 @@ require (
 	github.com/jackc/pgservicefile v0.0.0-20221227161230-091c0ba34f0a // indirect
 	github.com/jackc/pgtype v1.14.0 // indirect
 	github.com/jackc/pgx/v4 v4.18.3 // indirect
+	github.com/phpdave11/gofpdf v1.4.2
 	github.com/toorop/go-dkim v0.0.0-20201103131630-e1cd1a0a5208 // indirect
 	github.com/vanng822/css v1.0.1 // indirect
 	github.com/vanng822/go-premailer v1.21.0 // indirect

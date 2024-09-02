@@ -32,6 +32,7 @@ type Message struct {
 	To          string
 	Subject     string
 	Attachments []string
+	AttachmentMap map[string]string
 	Data        any
 	DataMap     map[string]any
 	Template    string
@@ -65,26 +66,29 @@ func (m *Mail) sendMail(msg Message, errorChan chan error) {
 	if msg.FromName == "" {
 		msg.FromName = m.FromName
 	}
-
-	data := map[string]any{
-		"message": msg.Data,
+	
+	if msg.AttachmentMap == nil {
+		msg.AttachmentMap = make(map[string]string)
 	}
 
-	msg.DataMap = data
+	// data := map[string]any{
+	// 	"message": msg.Data,
+	// }
+
+	if len(msg.DataMap) == 0 {
+		msg.DataMap = make(map[string]any)
+	}
+
+	msg.DataMap["message"] = msg.Data
 
 	// build html mail
-	var (
-		formatedMessage string
-		err             error
-	)
-	formatedMessage, err = m.buildHTMLMessage(msg)
+	formattedMessage, err := m.buildHTMLMessage(msg)
 	if err != nil {
 		errorChan <- err
 	}
 
 	// build plain text mail
-	var plainMessage string
-	plainMessage, err = m.buildPlainTextMessage(msg)
+	plainMessage, err := m.buildPlainTextMessage(msg)
 	if err != nil {
 		errorChan <- err
 	}
@@ -108,11 +112,17 @@ func (m *Mail) sendMail(msg Message, errorChan chan error) {
 	email.SetFrom(msg.From).AddTo(msg.To).SetSubject(msg.Subject)
 
 	email.SetBody(mail.TextPlain, plainMessage)
-	email.AddAlternative(mail.TextHTML, formatedMessage)
+	email.AddAlternative(mail.TextHTML, formattedMessage)
 
 	if len(msg.Attachments) > 0 {
 		for _, x := range msg.Attachments {
 			email.AddAttachment(x)
+		}
+	}
+
+	if len(msg.AttachmentMap) > 0 {
+		for key, value := range msg.AttachmentMap {
+			email.AddAttachment(value, key)
 		}
 	}
 
